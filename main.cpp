@@ -8,6 +8,8 @@
 
 #include "sweetie.hpp"
 
+const char GAME_TITLE[] = "Abe's Calamansi Juice";
+
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -62,7 +64,7 @@ int main(int argc,char *argv[]) {
     }
 	
 	window = SDL_CreateWindow( 
-		"Abe's Calamansi Tycoon", 
+		GAME_TITLE,
 		SDL_WINDOWPOS_UNDEFINED, 
 		SDL_WINDOWPOS_UNDEFINED, 
 		SCREEN_WIDTH, 
@@ -92,6 +94,7 @@ int main(int argc,char *argv[]) {
 
 	SDL_Surface *numbersImage = LoadImage("images/numbers.bmp");
 
+	SDL_Surface *startImage = LoadImage("images/start.bmp");
 
 	
 	for(int i=0;i<10;i++) {
@@ -160,6 +163,8 @@ int main(int argc,char *argv[]) {
 		DrawImage(renderer,rightArrowImage,64,0);
 
 		DrawImage(renderer,numbersImage,32,64);
+
+		DrawImage(renderer,startImage,32,128);
 		
 		SDL_RenderPresent(renderer);
 	}
