@@ -27,6 +27,7 @@ struct Calamansi {
 
 Calamansi calamansi[10];
 
+SDL_Surface *customersImage[21]; 
 
 
 SDL_Surface *LoadImage(std::string path) {
@@ -97,6 +98,12 @@ int main(int argc,char *argv[]) {
 	SDL_Surface *startImage = LoadImage("images/start.bmp");
 
 	
+	customersImage[0] = LoadImage("images/customers/customer-00.bmp");
+	customersImage[1] = LoadImage("images/customers/customer-01.bmp");
+	customersImage[2] = LoadImage("images/customers/customer-02.bmp");
+
+
+
 	for(int i=0;i<10;i++) {
 		calamansi[i].x=rand()%SCREEN_WIDTH;
 		calamansi[i].y=rand()%SCREEN_HEIGHT;
@@ -165,6 +172,13 @@ int main(int argc,char *argv[]) {
 		DrawImage(renderer,numbersImage,32,64);
 
 		DrawImage(renderer,startImage,32,128);
+
+
+		for(int i=0;i<3; i++) {
+			DrawImage(renderer,customersImage[i],64*i,0);
+		}
+
+
 		
 		SDL_RenderPresent(renderer);
 	}
