@@ -158,7 +158,7 @@ int main(int argc,char *argv[]) {
 			if(calamansi[i].y < 0) { calamansi[i].y=0; calamansi[i].yd=1; Speed(i); }
 
 			if(calamansi[i].x > SCREEN_WIDTH-slicedCalamansiImage->w) { calamansi[i].x=SCREEN_WIDTH-slicedCalamansiImage->w; calamansi[i].xd=-1; Speed(i); }
-			if(calamansi[i].y > SCREEN_HEIGHT-slicedCalamansiImage->h) { calamansi[i].y=SCREEN_HEIGHT-slicedCalamansiImage->h; calamansi[i].yd=-1;  Speed(i);}
+			if(calamansi[i].y > SCREEN_HEIGHT-slicedCalamansiImage->h) { calamansi[i].y=SCREEN_HEIGHT-slicedCalamansiImage->h; calamansi[i].yd=-1;  Speed(i); }
 		}
 
 		DrawImage(renderer,gameTitleImage,(SCREEN_WIDTH-gameTitleImage->w)/2,10);
@@ -173,14 +173,13 @@ int main(int argc,char *argv[]) {
 
 		DrawImage(renderer,startImage,32,128);
 
-
-		for(int i=0;i<3; i++) {
+		for(int i=0; i<3; i++) {
 			DrawImage(renderer,customersImage[i],64*i,0);
 		}
-
-
 		
 		SDL_RenderPresent(renderer);
+		
+		SDL_Delay(10);
 	}
 
 	SDL_DestroyRenderer(renderer);
