@@ -89,20 +89,15 @@ int main(int argc,char *argv[]) {
 	SDL_Surface *abeImage = LoadImage("images/abe.bmp");
 	SDL_Surface *calamansiImage = LoadImage("images/calamansi.bmp");
 	SDL_Surface *slicedCalamansiImage = LoadImage("images/SlicedCalamansi.bmp");
-
-	SDL_Surface *leftArrowImage = LoadImage("images/LeftArrow.bmp");
-	SDL_Surface *rightArrowImage = LoadImage("images/RightArrow.bmp");
-
-	SDL_Surface *numbersImage = LoadImage("images/numbers.bmp");
-
-	SDL_Surface *startImage = LoadImage("images/start.bmp");
-
-	
-	customersImage[0] = LoadImage("images/customers/customer-00.bmp");
-	customersImage[1] = LoadImage("images/customers/customer-01.bmp");
-	customersImage[2] = LoadImage("images/customers/customer-02.bmp");
+	SDL_Surface *startGameImage = LoadImage("images/StartGame.bmp");
 
 
+
+	char path[256];
+	for(int i=0;i<21;i++) {
+		sprintf(path,"images/customers/customer-%02d.bmp",i);
+		customersImage[i] = LoadImage(path);
+	}
 
 	for(int i=0;i<10;i++) {
 		calamansi[i].x=rand()%SCREEN_WIDTH;
@@ -112,7 +107,6 @@ int main(int argc,char *argv[]) {
 		calamansi[i].xd=rand()%2?1:-1;
 		calamansi[i].yd=rand()%2?1:-1;	
 	}
-
 
 	// High-precision tracking variables
 	Uint64 lastTime = SDL_GetPerformanceCounter();
@@ -162,20 +156,17 @@ int main(int argc,char *argv[]) {
 		}
 
 		DrawImage(renderer,gameTitleImage,(SCREEN_WIDTH-gameTitleImage->w)/2,10);
-		DrawImage(renderer,calamansiImage,(SCREEN_WIDTH-calamansiImage->w)/2,100);
-
+		DrawImage(renderer,calamansiImage,(SCREEN_WIDTH-calamansiImage->w)/2,(SCREEN_HEIGHT-calamansiImage->h)/2);
 		DrawImage(renderer,abeImage,SCREEN_WIDTH-abeImage->w,SCREEN_HEIGHT-abeImage->h);
+		DrawImage(renderer,startGameImage,(SCREEN_WIDTH-startGameImage->w)/2,(SCREEN_HEIGHT-startGameImage->h)/2);
 
-		DrawImage(renderer,leftArrowImage,0,0);
-		DrawImage(renderer,rightArrowImage,64,0);
 
-		DrawImage(renderer,numbersImage,32,64);
-
-		DrawImage(renderer,startImage,32,128);
-
-		for(int i=0; i<3; i++) {
-			DrawImage(renderer,customersImage[i],64*i,0);
+/*
+		for(int i=0; i<21; i++) {
+			DrawImage(renderer,customersImage[i],64*(i%7),64*(i/7));
 		}
+*/
+
 		
 		SDL_RenderPresent(renderer);
 		
